@@ -14,3 +14,20 @@ exports.findAll = function(req, res) {
     res.json(foods);
   });
 };
+
+exports.update = function(req, res) {
+  const food = req.body;
+  const query = { _id: req.params.id };
+  Food.findOneAndUpdate(query, { $set: { name: food.name, price: food.price } }, {}, (err) => {
+    if (err) return res.status(500).send('Error when update');
+    res.send({ message: 'Food updated' });
+  });
+};
+
+exports.delete = function(req, res) {
+  const query = { _id: req.params.id };
+  Food.remove(query, (err) => {
+    if (err) return res.status(500).send('Error when delete');
+    res.send({ message: 'Food deleted' });
+  });
+};

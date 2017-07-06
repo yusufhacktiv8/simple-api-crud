@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.post('/', foodController.create);
 router.get('/', foodController.findAll);
+router.put('/:id', foodController.update);
+router.delete('/:id', foodController.delete);
 
 module.exports = router;
